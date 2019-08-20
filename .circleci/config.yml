@@ -10,7 +10,10 @@ jobs:
     steps:
       - run:
           name: Deploy Over SSH
-          command: ssh $SSH_USER@$SSH_HOST "cd /var/www/lukashueller.de; git add .; git stash; git pull;"
+          command: |
+            curl -X POST -F "channel=lukashueller" -F "status=start" -F "secret=$NOTIFY_TOKEN" https://kiekbjul.de/api/slack
+            ssh $SSH_USER@$SSH_HOST "cd /var/www/lukashueller.de; git add .; git stash; git pull;"
+            curl -X POST -F "channel=lukashueller" -F "status=stop" -F "secret=$NOTIFY_TOKEN" https://kiekbjul.de/api/slack
 workflows:
   version: 2
   build-and-deploy:
