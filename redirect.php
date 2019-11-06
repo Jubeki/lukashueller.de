@@ -11,6 +11,10 @@ if(isset($_POST['password'])) {
             $password_check = "pw456";
             $redirect = "https://lukashueller.de/";
             break;
+        case 'thunkable1':
+            $password_check = "todoapp";
+            $redirect = "https://x.thunkable.com/copy/76a4644a4a7e07a6d92e853837ae190c";
+            break;
     }
 
     if(isset($password_check) && $password_check == $password) {
