@@ -30,16 +30,7 @@ jobs:
         script: |
           php /var/www/kiekbjul/artisan kiekbjul:deploy lukashueller.de
           cd /var/www/lukashueller.de
-          php artisan down
-          php artisan view:clear
-          php artisan cache:clear
           git add .
           git stash
           git pull
-          composer update --no-interaction --prefer-dist --optimize-autoloader
-          npm update
-          npm run production
-          php artisan migrate --seed --force
-          php artisan storage:link
-          php artisan up
           php /var/www/kiekbjul/artisan kiekbjul:deploy lukashueller.de --finished
